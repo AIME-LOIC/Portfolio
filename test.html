@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aime Loic - Full-Stack | AI | Security</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ========== BASE THEME STYLING ========== */
+        .page-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* ======= SPLASH SCREEN ====== */
+        #splash-screen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            background-color: #0d1117;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+        #splash-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loading-spinner {
+            border: 4px solid rgba(255,255,255,0.2);
+            border-top: 4px solid #38bdf8;
+            border-radius: 50%;
+            width: 45px; height: 45px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ======= TOASTS ====== */
+        #toaster-container {
+            position: fixed;
+            bottom: 20px; right: 20px;
+            z-index: 9998;
+            max-width: 350px;
+        }
+        .toast {
+            padding: 1rem; margin-top: 1rem;
+            border-radius: 10px;
+            opacity: 0; transform: translateX(100%);
+            transition: 0.5s ease-out;
+            color: white;
+        }
+        .toast.show {
+            opacity: 1; transform: translateX(0);
+        }
+        .toast.success { background: #10b981; }
+        .toast.info { background: #3b82f6; }
+
+        /* ======= FADE ANIMATIONS ======= */
+        .anim-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 1s ease-out;
+        }
+        .anim-fade-in.is-visible {
+            opacity: 1; transform: translateY(0);
+        }
+
+        /* ======= SKILL BAR ======= */
+        .skill-bar {
+            width: 0;
+            transition: 1.5s ease-out;
+        }
+
+        /* ======= HERO PULSE RING ======= */
+        @keyframes pulse-glow {
+            0%,100% { box-shadow: 0 0 0 0 rgba(79,70,229,0.45); }
+            50% { box-shadow: 0 0 0 25px rgba(79,70,229,0); }
+        }
+        .hero-pulse {
+            animation: pulse-glow 3s infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+
+    <!-- ========== SPLASH SCREEN ========== -->
+    <div id="splash-screen">
+        <div class="loading-spinner"></div>
+        <p class="mt-4 text-teal-400 text-lg">Initializing Systems...</p>
+    </div>
+
+    <div id="toaster-container"></div>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-950/90 backdrop-blur-xl shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
+            <a href="#home" class="text-2xl font-extrabold text-indigo-600 dark:text-teal-400">AimeLoic<span class="text-sm">.dev</span></a>
+            <div class="flex space-x-6">
+                <a href="#about" class="hover:text-indigo-600">About</a>
+                <a href="#skills" class="hover:text-indigo-600">Skills</a>
+                <a href="#projects" class="hover:text-indigo-600">Projects</a>
+                <a href="#contact" class="hover:text-indigo-600">Contact</a>
+
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                    <i class="fas fa-moon text-gray-800 dark:text-yellow-400"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section id="home" class="page-section pt-20">
+        <div class="text-center">
+            <div class="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-indigo-600 dark:border-teal-400 hero-pulse mb-6">
+                <div class="flex items-center justify-center w-full h-full bg-gray-700 text-5xl text-white font-bold">AL</div>
+            </div>
+
+            <p class="text-xl text-gray-500 dark:text-gray-300">Hello, I'm</p>
+
+            <h1 class="text-6xl font-extrabold">Aime Loic</h1>
+
+            <p id="typing-text" class="text-2xl mt-3 text-indigo-600 dark:text-teal-400">|</p>
+
+            <div class="mt-8 flex justify-center space-x-6">
+                <a href="#projects" class="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg">
+                    <i class="fas fa-rocket mr-2"></i> View Projects
+                </a>
+
+                <button id="download-cv-btn" class="px-8 py-3 border-2 border-indigo-600 text-indigo-600 rounded-full hover:bg-indigo-50 dark:text-teal-400">
+                    <i class="fas fa-file-download mr-2"></i> Download CV
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section id="about" class="page-section bg-gray-100 dark:bg-gray-800 px-6">
+        <h2 class="text-4xl font-extrabold text-center mb-12">About Me</h2>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="anim-fade-in">
+                <h3 class="text-3xl font-bold text-indigo-600 dark:text-teal-400 mb-3">Who I Am</h3>
+                <p class="text-lg leading-relaxed">
+                    I’m a backend developer and ethical hacking student building secure,
+                    scalable, and intelligent systems. I work daily with Python, PHP, JS, C,
+                    AI, machine learning, and cybersecurity tools on Kali Linux.
+                </p>
+            </div>
+
+            <div class="anim-fade-in">
+                <h3 class="text-3xl font-bold text-indigo-600 dark:text-teal-400 mb-3">My Philosophy</h3>
+                <ul class="space-y-3 text-lg">
+                    <li><i class="fas fa-check text-teal-400 mr-2"></i>Security-first in all systems</li>
+                    <li><i class="fas fa-check text-teal-400 mr-2"></i>Clean, scalable architecture</li>
+                    <li><i class="fas fa-check text-teal-400 mr-2"></i>Daily intense learning</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SKILLS ========== -->
+    <section id="skills" class="page-section px-6">
+        <h2 class="text-4xl font-extrabold text-center mb-12">Technical Arsenal</h2>
+
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <!-- BACKEND -->
+            <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg anim-fade-in">
+                <h3 class="text-2xl font-bold mb-4">Backend & AI</h3>
+                <div class="space-y-4">
+                    <div data-level="90">
+                        <p class="flex justify-between">Python / AI <span>90%</span></p>
+                        <div class="bg-gray-300 rounded-full h-2"><div class="skill-bar bg-indigo-600 h-2 rounded-full"></div></div>
+                    </div>
+                    <div data-level="85">
+                        <p class="flex justify-between">PHP <span>85%</span></p>
+                        <div class="bg-gray-300 rounded-full h-2"><div class="skill-bar bg-indigo-600 h-2 rounded-full"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FRONTEND -->
+            <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg anim-fade-in">
+                <h3 class="text-2xl font-bold mb-4">Frontend & Databases</h3>
+                <div class="space-y-4">
+                    <div data-level="95">
+                        <p class="flex justify-between">HTML/CSS <span>95%</span></p>
+                        <div class="bg-gray-300 h-2 rounded-full"><div class="skill-bar bg-indigo-600 h-2 rounded-full"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECURITY -->
+            <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg anim-fade-in">
+                <h3 class="text-2xl font-bold mb-4">Security</h3>
+                <ul class="space-y-3">
+                    <li><i class="fas fa-check text-teal-400 mr-2"></i>Ethical Hacking</li>
+                    <li><i class="fas fa-check text-teal-400 mr-2"></i>Kali Linux</li>
+                    <li><i class="fas fa-check text-teal-400 mr-2"></i>API Security</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========== PROJECTS ========== -->
+    <section id="projects" class="page-section bg-gray-100 dark:bg-gray-800 px-6">
+        <h2 class="text-4xl font-extrabold text-center mb-12">Projects</h2>
+
+        <div class="grid md:grid-cols-3 gap-10">
+
+            <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg anim-fade-in">
+                <i class="fas fa-robot text-4xl text-teal-400 mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">AI Assistant</h3>
+                <p>Voice commands, automation, smart replies, APIs, security integration.</p>
+            </div>
+
+            <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg anim-fade-in">
+                <i class="fas fa-lock text-4xl text-teal-400 mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">Security Tools</h3>
+                <p>Kali custom scripts, vulnerability scanning automation.</p>
+            </div>
+
+            <div class="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg anim-fade-in">
+                <i class="fas fa-globe text-4xl text-teal-400 mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">Full-stack Web Apps</h3>
+                <p>Vue + PHP + API systems with authentication + dashboards.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section id="contact" class="page-section px-6">
+        <h2 class="text-4xl font-extrabold text-center mb-8">Contact Me</h2>
+
+        <div class="text-center">
+            <p class="text-xl">Email:</p>
+            <p class="text-indigo-600 text-2xl font-bold">aimeloicdev@gmail.com</p>
+
+            <div class="mt-6 flex justify-center space-x-6">
+                <a href="#" class="text-3xl text-indigo-600"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-3xl text-blue-500"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-3xl text-pink-500"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="text-center py-6 bg-gray-900 text-gray-400">
+        © 2025 Aime Loic — All rights reserved.
+    </footer>
+
+<script>
+/* ========== TYPING TEXT ========== */
+const typingElement = document.getElementById("typing-text");
+const roles = ["Backend Developer", "AI & Machine Learning", "Cybersecurity", "Full-Stack Engineer"];
+let roleIndex = 0, charIndex = 0;
+
+function typeEffect() {
+    if(charIndex < roles[roleIndex].length) {
+        typingElement.textContent += roles[roleIndex][charIndex];
+        charIndex++;
+        setTimeout(typeEffect, 70);
+    } else {
+        setTimeout(() => eraseEffect(), 1500);
+    }
+}
+function eraseEffect() {
+    if(charIndex > 0) {
+        typingElement.textContent = roles[roleIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(eraseEffect, 40);
+    } else {
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(typeEffect, 200);
+    }
+}
+typeEffect();
+
+/* ========== THEME TOGGLE ========== */
+document.getElementById("theme-toggle").onclick = () => {
+    document.documentElement.classList.toggle("dark");
+};
+
+/* ========== FADE-IN OBSERVER ========== */
+const fadeElements = document.querySelectorAll(".anim-fade-in");
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("is-visible"); });
+});
+fadeElements.forEach(el => observer.observe(el));
+
+/* ========== SKILL BAR ANIMATION ========== */
+const skillBars = document.querySelectorAll(".skill-bar");
+skillBars.forEach(bar => {
+    const container = bar.parentElement.parentElement;
+    const level = container.getAttribute("data-level");
+    observer.observe(container);
+    container.addEventListener("transitionstart", () => {
+        bar.style.width = level + "%";
+    });
+});
+
+/* ========== SPLASH SCREEN ========== */
+window.onload = () => {
+    setTimeout(() => {
+        document.getElementById("splash-screen").classList.add("fade-out");
+    }, 1500);
+};
+
+/* ========== DOWNLOAD CV BUTTON (TOAST) ========== */
+document.getElementById("download-cv-btn").onclick = () => {
+    const toast = document.createElement("div");
+    toast.className = "toast info show";
+    toast.textContent = "CV download feature will be added soon.";
+    document.getElementById("toaster-container").appendChild(toast);
+    setTimeout(() => toast.classList.remove("show"), 3000);
+};
+</script>
+
+</body>
+</html>
