@@ -1,0 +1,33 @@
+myschool/
+│
+├── app/
+│   ├── main.py                  # FastAPI app initialization
+│   ├── database.py              # SQLAlchemy engine and session
+│   ├── models.py                # SQLAlchemy models for all tables
+│   ├── schemas.py               # Pydantic models for request/response validation
+│   ├── crud/                    # All database operations
+│   │   ├── teacher_crud.py
+│   │   ├── parent_crud.py
+│   │   ├── student_crud.py
+│   │   ├── admin_crud.py
+│   │   ├── class_crud.py
+│   │   ├── subject_crud.py
+│   │   └── timetable_crud.py
+│   │
+│   ├── routers/                 # API endpoints for each entity
+│   │   ├── teacher.py
+│   │   ├── parent.py
+│   │   ├── student.py
+│   │   ├── admin.py
+│   │   ├── class.py
+│   │   ├── subject.py
+│   │   └── timetable.py
+│   │
+│   └── utils/                   # Utilities, auth, password hashing, JWT
+│       ├── auth.py
+│       └── security.py
+│
+├── requirements.txt             # Python dependencies
+├── alembic/                      # Optional: migrations if using Alembic
+│
+└── README.md

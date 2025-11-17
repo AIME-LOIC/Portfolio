@@ -1,0 +1,58 @@
+-- TEACHERS
+CREATE TABLE teachers (
+    id SERIAL PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password TEXT NOT NULL
+);
+
+-- OTHER ADMINS (DOS, DOD, director, etc.)
+CREATE TABLE other_admins (
+    id SERIAL PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    role VARCHAR(50) NOT NULL  -- e.g., DOS, DOD, Director
+);
+
+-- PARENTS
+CREATE TABLE parents (
+    id SERIAL PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password TEXT NOT NULL
+);
+
+-- CLASSES
+CREATE TABLE classes (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    class_teacher_id INT REFERENCES teachers(id)  -- One teacher per class
+);
+
+-- SUBJECTS (one teacher per subject)
+CREATE TABLE subjects (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    teacher_id INT REFERENCES teachers(id)
+);
+
+-- STUDENTS
+CREATE TABLE students (
+    id SERIAL PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    parent_id INT REFERENCES parents(id) ON DELETE CASCADE,
+    class_id INT REFERENCES classes(id) ON DELETE SET NULL
+);
+
+-- TIMETABLE
+CREATE TABLE timetable (
+    id SERIAL PRIMARY KEY,
+    class_id INT REFERENCES classes(id) ON DELETE CASCADE,
+    subject_id INT REFERENCES subjects(id) ON DELETE CASCADE,
+    day_of_week VARCHAR(20) NOT NULL,   -- Monday, Tuesday...
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL
+);
