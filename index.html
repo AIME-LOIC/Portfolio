@@ -1,697 +1,529 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aime Loic | Backend Developer & Future Cybersecurity Engineer</title>
-  <meta
-    name="description"
-    content="Portfolio of Aime Loic, Backend Developer, founder of OnePercent, and aspiring Cybersecurity Engineer."
-  />
-  <meta name="google-site-verification" content="ZfOqpsVV7Mv1-PxcKiUDQBBONWc1SKmeTi2y2OnZ_RY" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
-    rel="stylesheet"
-  />
-  <style>
-    :root {
-      --bg: #f6f8fb;
-      --text: #0f172a;
-      --muted: #475569;
-      --card: #ffffff;
-      --line: #e2e8f0;
-      --primary: #0f766e;
-      --primary-2: #ea580c;
-      --accent: #0ea5a4;
-      --hero-glow: radial-gradient(circle at 20% 20%, rgba(14, 165, 164, 0.25), transparent 45%),
-        radial-gradient(circle at 80% 10%, rgba(234, 88, 12, 0.22), transparent 40%);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: "Sora", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1120px, 92vw);
-      margin-inline: auto;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(10px);
-      background: rgba(246, 248, 251, 0.8);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
-    }
-
-    .nav-wrap {
-      height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .brand {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      letter-spacing: 0.4px;
-    }
-
-    .brand span {
-      color: var(--primary);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-
-    .nav-links a:hover {
-      color: var(--primary);
-    }
-
-    .cta-small {
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      background: var(--text);
-      color: #fff;
-      transition: transform 0.2s ease;
-    }
-
-    .cta-small:hover {
-      transform: translateY(-2px);
-    }
-
-    .menu-btn {
-      display: none;
-      border: 0;
-      background: transparent;
-      font-size: 1.6rem;
-      color: var(--text);
-      cursor: pointer;
-    }
-
-    .hero {
-      position: relative;
-      padding: 88px 0 72px;
-      overflow: clip;
-      background: var(--hero-glow);
-    }
-
-    .hero-grid {
-      display: grid;
-      gap: 38px;
-      align-items: center;
-      grid-template-columns: 1.2fr 0.9fr;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 6px 14px;
-      border: 1px solid #cbd5e1;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 18px;
-      background: rgba(255, 255, 255, 0.6);
-    }
-
-    .hero h1 {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(2rem, 4.8vw, 4rem);
-      line-height: 1.07;
-      letter-spacing: -0.02em;
-    }
-
-    .hero h1 strong {
-      color: var(--primary);
-      font-weight: 700;
-    }
-
-    .hero p {
-      margin-top: 16px;
-      color: var(--muted);
-      max-width: 60ch;
-    }
-
-    .hero-actions {
-      margin-top: 28px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .btn {
-      padding: 12px 18px;
-      border-radius: 12px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      border: 1px solid transparent;
-      transition: all 0.2s ease;
-    }
-
-    .btn.primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      color: #fff;
-    }
-
-    .btn.primary:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.05);
-    }
-
-    .btn.ghost {
-      border-color: #cbd5e1;
-      background: #fff;
-      color: var(--text);
-    }
-
-    .hero-card {
-      background: linear-gradient(180deg, #ffffff, #f1f5f9);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 20px;
-      box-shadow: 0 16px 46px rgba(2, 6, 23, 0.08);
-      animation: floatCard 3.6s ease-in-out infinite;
-    }
-
-    @keyframes floatCard {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
-    }
-
-    .hero-card img {
-      border-radius: 14px;
-      aspect-ratio: 4 / 4;
-      object-fit: cover;
-      border: 2px solid #e2e8f0;
-    }
-
-    .hero-card ul {
-      list-style: none;
-      margin-top: 18px;
-      display: grid;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    section {
-      padding: 78px 0;
-    }
-
-    .section-head {
-      margin-bottom: 24px;
-    }
-
-    .section-head h2 {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(1.6rem, 3vw, 2.5rem);
-      line-height: 1.1;
-    }
-
-    .section-head p {
-      color: var(--muted);
-      margin-top: 10px;
-      max-width: 70ch;
-    }
-
-    .stats {
-      display: grid;
-      gap: 14px;
-      grid-template-columns: repeat(4, 1fr);
-      margin-top: 8px;
-    }
-
-    .stat {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 20px;
-    }
-
-    .stat h3 {
-      font-size: 1.7rem;
-      color: var(--primary);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .stat p {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .about-grid {
-      display: grid;
-      gap: 20px;
-      grid-template-columns: 1.2fr 0.8fr;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 22px;
-    }
-
-    .card h3 {
-      font-size: 1.05rem;
-      margin-bottom: 12px;
-    }
-
-    .timeline {
-      list-style: none;
-      display: grid;
-      gap: 12px;
-    }
-
-    .timeline li {
-      border-left: 2px solid #cbd5e1;
-      padding-left: 14px;
-      color: var(--muted);
-    }
-
-    .skills-grid {
-      display: grid;
-      gap: 14px;
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .chip-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .chip {
-      padding: 7px 11px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      border: 1px solid #cbd5e1;
-      background: #f8fafc;
-      color: #334155;
-    }
-
-    .project-grid {
-      display: grid;
-      gap: 14px;
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .project {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(145deg, #ffffff, #f8fafc);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 20px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .project:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.09);
-    }
-
-    .project h3 {
-      font-size: 1.05rem;
-      margin-bottom: 7px;
-    }
-
-    .project p {
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-bottom: 12px;
-    }
-
-    .project .tag {
-      color: var(--primary-2);
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
-
-    .contact {
-      text-align: center;
-      background: linear-gradient(180deg, transparent, rgba(14, 165, 164, 0.08));
-    }
-
-    .links {
-      margin-top: 24px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .links a {
-      border: 1px solid #cbd5e1;
-      background: #fff;
-      padding: 10px 14px;
-      border-radius: 12px;
-      font-weight: 600;
-      color: #1e293b;
-    }
-
-    .links a:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-    }
-
-    footer {
-      padding: 26px 0 38px;
-      color: #64748b;
-      text-align: center;
-      font-size: 0.9rem;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.in {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .about-grid,
-      .skills-grid,
-      .project-grid,
-      .stats {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .menu-btn {
-        display: inline-block;
-      }
-
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 76px;
-        left: 0;
-        right: 0;
-        padding: 16px;
-        background: #f8fafc;
-        border-bottom: 1px solid var(--line);
-        justify-content: flex-start;
-        flex-wrap: wrap;
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .cta-small {
-        display: none;
-      }
-
-      .hero {
-        padding-top: 54px;
-      }
-
-      .hero-grid,
-      .about-grid,
-      .skills-grid,
-      .project-grid,
-      .stats {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aime Loic - Full-Stack | AI | Security</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .page-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* --- SPLASH SCREEN STYLES --- */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #0d1117;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+        #splash-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        @keyframes loading-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid #38bdf8;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: loading-spin 1s linear infinite;
+        }
+        .loading-text {
+            color: #10b981;
+            font-size: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        /* --- SKILLS MARQUEE --- */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 2.5rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        .marquee-content {
+            display: inline-flex;
+            gap: 5rem;
+            animation: marquee-scroll 30s linear infinite;
+            align-items: center;
+        }
+        .skill-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: 100px;
+        }
+        .skill-logo i {
+            font-size: 3rem;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .skill-logo:hover i {
+            transform: scale(1.15) translateY(-5px);
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- TOASTER CONTAINER STYLES --- */
+        #toaster-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9998;
+            max-width: 350px;
+        }
+        .toast {
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(100%);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .toast.success { background-color: #10b981; color: white; }
+        .toast.info { background-color: #3b82f6; color: white; }
+
+        /* --- General Animation Styles --- */
+        .anim-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .anim-fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Hero Pulsating Effect --- */
+        @keyframes pulse-slow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
+            50% { box-shadow: 0 0 0 25px rgba(79, 70, 229, 0); }
+        }
+        .hero-pulse {
+            animation: pulse-slow 3s infinite;
+        }
+
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: block; }
+    </style>
 </head>
-<body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="#top">Aime <span>Loic</span></a>
-      <nav id="navLinks" class="nav-links">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="cta-small" href="CV.pdf" download="Aime_Loic_CV.pdf">Download CV</a>
-      <button id="menuBtn" class="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-500">
+
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="loading-spinner"></div>
+        <p class="loading-text" id="preloader-text">Initializing Secure Systems...</p>
     </div>
-  </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="reveal">
-          <span class="eyebrow">Backend Engineer | Founder | Cybersecurity Path</span>
-          <h1>
-            I build reliable backend systems and I am evolving into a
-            <strong>Cybersecurity Engineer</strong>.
-          </h1>
-          <p>
-            I'm <strong>Aime Loic</strong>, owner of <strong>OnePercent</strong>. I design products that are clean,
-            scalable, and secure. My core stack is Python, and I'm actively building depth in Go, React,
-            Flutter (Dart), AI/ML, and cybersecurity.
-          </p>
-          <div class="hero-actions">
-            <a class="btn primary" href="#projects">View My Projects</a>
-            <a class="btn ghost" href="https://github.com/AIME-LOIC" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a class="btn ghost" href="https://www.linkedin.com/in/aimeloic/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </div>
+    <!-- Toast Container -->
+    <div id="toaster-container"></div>
+
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-950/90 backdrop-blur-sm shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+            <a href="#home" class="text-2xl font-extrabold text-indigo-600 dark:text-teal-400 tracking-wider">Aime Loic</a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#about" class="nav-link font-medium hover:text-indigo-600 dark:hover:text-teal-400">About</a>
+                <a href="#skills" class="nav-link font-medium hover:text-indigo-600 dark:hover:text-teal-400">Skills</a>
+                <a href="#projects" class="nav-link font-medium hover:text-indigo-600 dark:hover:text-teal-400">Projects</a>
+                <a href="#contact" class="nav-link font-medium hover:text-indigo-600 dark:hover:text-teal-400">Contact</a>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300">
+                    <i class="fas fa-moon text-gray-800 dark:text-yellow-400"></i>
+                </button>
+            </div>
+            <div class="md:hidden flex items-center">
+                <button id="hamburger" class="p-2 rounded-md focus:outline-none">
+                    <i class="fas fa-bars text-2xl text-gray-800 dark:text-yellow-400"></i>
+                </button>
+            </div>
         </div>
 
-        <aside class="hero-card reveal">
-          <img src="loic.png" alt="Portrait of Aime Loic" />
-          <ul>
-            <li><strong>Current focus:</strong> secure backend engineering</li>
-            <li><strong>Internships:</strong> M&amp;SLABS, WithinTech</li>
-            <li><strong>Achievement:</strong> 1st place, Hack With Me Hackathon</li>
-          </ul>
-        </aside>
-      </div>
-    </section>
-
-    <section id="about" class="container reveal">
-      <div class="section-head">
-        <h2>About Me</h2>
-        <p>
-          I deliver backend systems with production discipline: performance, maintainability, and security-first
-          decisions. I combine shipping speed with architecture that can scale.
-        </p>
-      </div>
-      <div class="stats">
-        <article class="stat">
-          <h3>8+</h3>
-          <p>Real-world projects delivered across startup and education use cases.</p>
-        </article>
-        <article class="stat">
-          <h3>1st</h3>
-          <p>Rank achieved in the Hack With Me Hackathon.</p>
-        </article>
-        <article class="stat">
-          <h3>2</h3>
-          <p>Internships completed at M&amp;SLABS and WithinTech.</p>
-        </article>
-        <article class="stat">
-          <h3>1</h3>
-          <p>Tech company founded and led: OnePercent.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="skills" class="container reveal">
-      <div class="section-head">
-        <h2>Skills & Direction</h2>
-        <p>Stack built for backend impact now, with security engineering as the next specialization.</p>
-      </div>
-      <div class="skills-grid">
-        <article class="card">
-          <h3>Backend Core</h3>
-          <div class="chip-wrap">
-            <span class="chip">Python</span>
-            <span class="chip">REST APIs</span>
-            <span class="chip">System Design</span>
-            <span class="chip">Database Modeling</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Currently Learning</h3>
-          <div class="chip-wrap">
-            <span class="chip">Go</span>
-            <span class="chip">React</span>
-            <span class="chip">Flutter (Dart)</span>
-            <span class="chip">AI/ML</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Security Track</h3>
-          <div class="chip-wrap">
-            <span class="chip">Cybersecurity Foundations</span>
-            <span class="chip">Secure Coding</span>
-            <span class="chip">Threat Awareness</span>
-            <span class="chip">Security Testing</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="projects" class="container reveal">
-      <div class="section-head">
-        <h2>Selected Projects</h2>
-        <p>Some products and systems I have worked on across different domains.</p>
-      </div>
-      <div class="project-grid">
-        <article class="project">
-          <h3>Friday</h3>
-          <p>Backend-focused product execution with emphasis on API reliability and maintainable code.</p>
-          <span class="tag">Backend Engineering</span>
-        </article>
-        <article class="project">
-          <h3>StartNow</h3>
-          <p>Startup-oriented build where delivery speed and clear architecture had to work together.</p>
-          <span class="tag">Product Development</span>
-        </article>
-        <article class="project">
-          <h3>V-Lab</h3>
-          <p>Technical solution designed for practical workflows with clean logic and scalable structure.</p>
-          <span class="tag">System Design</span>
-        </article>
-        <article class="project">
-          <h3>RWC</h3>
-          <p>Project implementation balancing robust backend behavior and clear operational flow.</p>
-          <span class="tag">Backend Services</span>
-        </article>
-        <article class="project">
-          <h3>STG</h3>
-          <p>Engineering contribution focused on reliable features and production-readiness.</p>
-          <span class="tag">Engineering Delivery</span>
-        </article>
-        <article class="project">
-          <h3>Bookit</h3>
-          <p>Booking-oriented platform work emphasizing data consistency and user-friendly logic.</p>
-          <span class="tag">Business Platform</span>
-        </article>
-        <article class="project">
-          <h3>MySchool</h3>
-          <p>Education-focused system designed to make management operations simpler and smarter.</p>
-          <span class="tag">EdTech</span>
-        </article>
-      </div>
-    </section>
-
-    <section id="experience" class="container reveal">
-      <div class="section-head">
-        <h2>Experience & Milestones</h2>
-      </div>
-      <div class="about-grid">
-        <article class="card">
-          <h3>Professional Path</h3>
-          <ul class="timeline">
-            <li><strong>Owner</strong> at OnePercent, leading technical execution and product direction.</li>
-            <li><strong>Intern</strong> at M&amp;SLABS, working in practical engineering environments.</li>
-            <li><strong>Intern</strong> at WithinTech, contributing to real development workflows.</li>
-            <li><strong>Hackathon Winner</strong>, ranked first in Hack With Me.</li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>Current Objective</h3>
-          <p>
-            Transition from strong backend delivery to full cybersecurity engineering capability by combining
-            secure architecture, vulnerability mindset, and offensive/defensive technical depth.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section id="contact" class="contact reveal">
-      <div class="container">
-        <div class="section-head">
-          <h2>Let's Build Something Strong</h2>
-          <p>Open to collaboration on backend, product systems, and security-driven engineering work.</p>
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white dark:bg-gray-950 shadow-md">
+            <a href="#about" class="block px-4 py-3 border-b dark:border-gray-800 nav-link">About</a>
+            <a href="#skills" class="block px-4 py-3 border-b dark:border-gray-800 nav-link">Skills</a>
+            <a href="#projects" class="block px-4 py-3 border-b dark:border-gray-800 nav-link">Projects</a>
+            <a href="#contact" class="block px-4 py-3 nav-link">Contact</a>
         </div>
-        <div class="links">
-          <a href="https://github.com/AIME-LOIC" target="_blank" rel="noopener noreferrer">GitHub / AIME-LOIC</a>
-          <a href="https://www.linkedin.com/in/aimeloic/" target="_blank" rel="noopener noreferrer">LinkedIn / aimeloic</a>
-          <a href="CV.pdf" download="Aime_Loic_CV.pdf">Download CV</a>
-        </div>
-      </div>
-    </section>
-  </main>
+    </nav>
 
-  <footer>
-    <div class="container">
-      <p>(c) <span id="year"></span> Aime Loic. Built with focus, discipline, and continuous learning.</p>
-    </div>
-  </footer>
+    <!-- MAIN CONTENT -->
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <section id="home" class="page-section pt-8">
+            <div class="max-w-7xl mx-auto px-4 text-center anim-fade-in">
+                <div class="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-4 border-indigo-600 dark:border-teal-400 hero-pulse">
+                    <img src="/loic.png" alt="Aime Loic" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Aime+Loic&background=4f46e5&color=fff'">
+                </div>
+                <p class="text-xl text-gray-600 dark:text-gray-400 mb-2 anim-fade-in" data-delay="1">Hello, I'm</p>
+                <h1 class="text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-7xl lg:text-8xl anim-fade-in" data-delay="2">Aime Loic</h1>
+                <p id="typing-text" class="mt-4 h-8 text-2xl font-semibold text-indigo-600 dark:text-teal-400 sm:text-3xl lg:text-4xl anim-fade-in" data-delay="3">|</p>
+                
+                <div class="mt-12 flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6 anim-fade-in" data-delay="4">
+                    <a href="#projects" class="px-8 py-3 rounded-full shadow-lg text-white bg-indigo-600 hover:bg-indigo-700 dark:bg-teal-500 dark:hover:bg-teal-600 transition transform hover:scale-105 inline-flex items-center">
+                        <i class="fas fa-rocket mr-2"></i> View Projects
+                    </a>
+                    <a href="CV.pdf" id="download-cv-btn" download="Aime_Loic_CV.pdf" class="px-8 py-3 border-2 border-indigo-600 dark:border-teal-400 rounded-full text-indigo-600 dark:text-teal-400 hover:bg-indigo-50 dark:hover:bg-gray-800 transition transform hover:scale-105 inline-flex items-center">
+                        <i class="fas fa-file-download mr-2"></i> Download CV
+                    </a>
+                </div>
+            </div>
+        </section>
 
-  <script>
-    const year = document.getElementById("year");
-    year.textContent = new Date().getFullYear();
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-24 bg-white dark:bg-gray-900 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="anim-fade-in" data-delay="1">
+                        <div class="relative inline-block mb-4">
+                            <span class="text-indigo-600 dark:text-teal-400 font-bold uppercase tracking-widest text-sm">A Bit About Me</span>
+                            <div class="h-1 w-12 bg-indigo-600 dark:bg-teal-400 mt-1"></div>
+                        </div>
+                        <h2 class="text-4xl lg:text-5xl font-extrabold mb-6 leading-tight">Crafting Digital Excellence with <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-teal-500">Logic & Innovation</span></h2>
+                        <div class="space-y-4 text-lg text-gray-600 dark:text-gray-400">
+                            <p>
+                                I am a passionate **Full-Stack Developer** based in Rwanda, dedicated to building secure, scalable, and user-centric digital products. My journey in technology is driven by a curiosity for how systems work and a desire to solve complex real-world problems.
+                            </p>
+                            <p>
+                                Whether it's architecting robust backends with **Python** and **Go**, or crafting fluid front-end experiences with **React**, I focus on writing clean, efficient, and maintainable code. My background in **Cybersecurity** ensures that every line of code I write is built with a "security-first" mindset.
+                            </p>
+                            <p>
+                                Beyond just coding, I am a product engineer who believes in the power of **EdTech** and **FinTech** to transform communities. I thrive in collaborative environments where innovation meets execution.
+                            </p>
+                        </div>
+                        
+                        <div class="mt-10 grid grid-cols-2 gap-4">
+                            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border-l-4 border-indigo-600">
+                                <h4 class="font-bold text-2xl text-gray-900 dark:text-white">5+</h4>
+                                <p class="text-sm text-gray-500">Production Projects</p>
+                            </div>
+                            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border-l-4 border-teal-500">
+                                <h4 class="font-bold text-2xl text-gray-900 dark:text-white">24/7</h4>
+                                <p class="text-sm text-gray-500">Security Mindset</p>
+                            </div>
+                        </div>
+                    </div>
 
-    const menuBtn = document.getElementById("menuBtn");
-    const navLinks = document.getElementById("navLinks");
+                    <div class="relative anim-fade-in" data-delay="2">
+                        <div class="absolute -top-10 -left-10 w-40 h-40 bg-indigo-600/10 rounded-full blur-3xl"></div>
+                        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-teal-500/10 rounded-full blur-3xl"></div>
+                        
+                        <div class="relative bg-gray-50 dark:bg-gray-800 p-8 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-2xl">
+                            <ul class="space-y-6">
+                                <li class="flex items-center">
+                                    <div class="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mr-4">
+                                        <i class="fas fa-code"></i>
+                                    </div>
+                                    <span class="font-medium">Full-Stack Development</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <div class="w-10 h-10 rounded-lg bg-teal-100 dark:bg-teal-900/40 flex items-center justify-center text-teal-600 dark:text-teal-400 mr-4">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <span class="font-medium">Cybersecurity Enthusiast</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center text-purple-600 dark:text-purple-400 mr-4">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <span class="font-medium">AI & Automation Logic</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <div class="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center text-orange-600 dark:text-orange-400 mr-4">
+                                        <i class="fas fa-database"></i>
+                                    </div>
+                                    <span class="font-medium">Scalable Architecture</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    menuBtn.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
-    });
+        <!-- Skills Marquee Section -->
+        <section id="skills" class="py-20 bg-gray-100 dark:bg-gray-800/30 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 mb-10 text-center anim-fade-in">
+                <h2 class="text-4xl font-bold">Tech Stack & Tools</h2>
+                <p class="text-gray-600 dark:text-gray-400 mt-2">The languages and frameworks I use to build digital solutions</p>
+            </div>
+            
+            <div class="marquee-container anim-fade-in" data-delay="2">
+                <div class="marquee-content" id="marquee-inner">
+                    <div class="skill-logo text-[#3776AB]"><i class="fab fa-python"></i><span class="font-bold text-xs uppercase tracking-widest">Python</span></div>
+                    <div class="skill-logo text-[#00ADD8]"><i class="fab fa-golang"></i><span class="font-bold text-xs uppercase tracking-widest">Golang</span></div>
+                    <div class="skill-logo text-[#339933]"><i class="fab fa-node-js"></i><span class="font-bold text-xs uppercase tracking-widest">Node.js</span></div>
+                    <div class="skill-logo text-[#61DAFB]"><i class="fab fa-react"></i><span class="font-bold text-xs uppercase tracking-widest">React</span></div>
+                    <div class="skill-logo text-[#4FC08D]"><i class="fab fa-vuejs"></i><span class="font-bold text-xs uppercase tracking-widest">Vue.js</span></div>
+                    <div class="skill-logo text-[#F7DF1E]"><i class="fab fa-js"></i><span class="font-bold text-xs uppercase tracking-widest">JavaScript</span></div>
+                    <div class="skill-logo text-[#E34F26]"><i class="fab fa-html5"></i><span class="font-bold text-xs uppercase tracking-widest">HTML5</span></div>
+                    <div class="skill-logo text-[#1572B6]"><i class="fab fa-css3-alt"></i><span class="font-bold text-xs uppercase tracking-widest">CSS3</span></div>
+                    <div class="skill-logo text-[#F05032]"><i class="fab fa-git-alt"></i><span class="font-bold text-xs uppercase tracking-widest">Git</span></div>
+                    <div class="skill-logo text-[#2496ED]"><i class="fab fa-docker"></i><span class="font-bold text-xs uppercase tracking-widest">Docker</span></div>
+                </div>
+            </div>
+        </section>
 
-    navLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => navLinks.classList.remove("open"));
-    });
+        <!-- Projects Section -->
+        <section id="projects" class="page-section py-20 bg-white dark:bg-gray-900">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-16 anim-fade-in">
+                    <h2 class="text-5xl font-extrabold mb-4">Featured Projects</h2>
+                    <div class="h-1.5 w-24 bg-indigo-600 dark:bg-teal-400 mx-auto rounded-full"></div>
+                </div>
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in");
-            observer.unobserve(entry.target);
-          }
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- BOOKIT -->
+                    <div class="group relative bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 anim-fade-in" data-delay="1">
+                        <div class="p-8">
+                            <div class="text-indigo-600 dark:text-teal-400 text-4xl mb-6"><i class="fas fa-bus-alt"></i></div>
+                            <h3 class="text-2xl font-bold mb-3">BOOKIT</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6">A production-grade bus ticketing platform managing real-time seat bookings and secure transaction handling.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full text-xs font-bold uppercase">Backend</span>
+                                <span class="px-3 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-full text-xs font-bold uppercase">Python</span>
+                                <!-- direct link -->
+                                    <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full text-xs font-bold uppercase"><a href="https://bookit-rw-web.onrender.com" target="_blank" rel="noopener noreferrer">Visit Site</a></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- V-LAB -->
+                    <div class="group relative bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 anim-fade-in" data-delay="2">
+                        <div class="p-8">
+                            <div class="text-indigo-600 dark:text-teal-400 text-4xl mb-6"><i class="fas fa-flask"></i></div>
+                            <h3 class="text-2xl font-bold mb-3">V-LAB</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6">Virtual Science Lab designed for schools to perform digital experiments with high-fidelity simulations.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full text-xs font-bold uppercase">AI/Sim</span>
+                                <span class="px-3 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-full text-xs font-bold uppercase">React</span>
+                                <!-- direct link -->
+                                    <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full text-xs font-bold uppercase"><a href="https://v-lab-rw-web.onrender.com" target="_blank" rel="noopener noreferrer">Visit Site</a></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MYSCHOOL -->
+                    <div class="group relative bg-gray-50 dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 anim-fade-in" data-delay="3">
+                        <div class="p-8">
+                            <div class="text-indigo-600 dark:text-teal-400 text-4xl mb-6"><i class="fas fa-school"></i></div>
+                            <h3 class="text-2xl font-bold mb-3">MYSCHOOL</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6">An ecosystem connecting schools, parents, and students through real-time communication and management.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full text-xs font-bold uppercase">EdTech</span>
+                                <span class="px-3 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-full text-xs font-bold uppercase">FullStack</span>
+                                <!-- direct link -->
+                                 <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full text-xs font-bold uppercase"><a href="https://myschool-rw-web.onrender.com" target="_blank" rel="noopener noreferrer">Visit Site</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-950">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-16 anim-fade-in">
+                    <h2 class="text-5xl font-extrabold mb-4">Get In Touch</h2>
+                    <p class="text-gray-600 dark:text-gray-400">Let's discuss your next project or security audit.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Contact Info -->
+                    <div class="space-y-8 anim-fade-in" data-delay="1">
+                        <div class="bg-white dark:bg-gray-900 p-8 rounded-3xl shadow-lg border border-transparent dark:border-gray-800">
+                            <h3 class="text-2xl font-bold mb-6 text-indigo-600 dark:text-teal-400">Contact Details</h3>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mr-4 shrink-0">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-widest font-bold">Email</p>
+                                        <a href="mailto:aimeloic132@gmail.com" class="text-lg font-medium hover:text-indigo-600 dark:hover:text-teal-400 transition">aimeloic132@gmail.com</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-teal-100 dark:bg-teal-900/40 flex items-center justify-center text-teal-600 dark:text-teal-400 mr-4 shrink-0">
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-widest font-bold">Phone</p>
+                                        <a href="tel:+250791749219" class="text-lg font-medium hover:text-indigo-600 dark:hover:text-teal-400 transition">+250 791749219</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center text-purple-600 dark:text-purple-400 mr-4 shrink-0">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-widest font-bold">Location</p>
+                                        <p class="text-lg font-medium">Kigali, Rwanda</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <a href="https://github.com/AIME-LOIC" target="_blank" class="flex-1 bg-white dark:bg-gray-900 p-4 rounded-2xl shadow hover:shadow-indigo-500/20 transition flex items-center justify-center gap-2 font-bold">
+                                <i class="fab fa-github text-xl"></i> GitHub
+                            </a>
+                            <a href="https://www.linkedin.com/in/aimeloic/" target="_blank" class="flex-1 bg-white dark:bg-gray-900 p-4 rounded-2xl shadow hover:shadow-teal-500/20 transition flex items-center justify-center gap-2 font-bold">
+                                <i class="fab fa-linkedin text-xl"></i> LinkedIn
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="bg-white dark:bg-gray-900 p-8 rounded-3xl shadow-lg border border-transparent dark:border-gray-800 anim-fade-in" data-delay="2">
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-tight">Full Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-indigo-500 outline-none transition" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-tight">Email Address</label>
+                                <input type="email" required class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-indigo-500 outline-none transition" placeholder="john@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-tight">Message</label>
+                                <textarea required rows="4" class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-indigo-500 outline-none transition" placeholder="Tell me about your project..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-4 bg-indigo-600 hover:bg-indigo-700 dark:bg-teal-500 dark:hover:bg-teal-600 text-white font-bold rounded-xl shadow-lg transform transition active:scale-95 flex items-center justify-center gap-2">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-10 border-t dark:border-gray-800 bg-gray-50 dark:bg-gray-950">
+        <p class="text-gray-500 dark:text-gray-400">&copy; <span id="current-year"></span> Aime Loic. Developed for the Future.</p>
+    </footer>
+
+    <script>
+        function showToast(message, type = 'info', duration = 3000) {
+            const container = document.getElementById('toaster-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<i class="fas fa-check-circle mr-2"></i> ${message}`;
+            container.appendChild(toast);
+            setTimeout(() => toast.classList.add('show'), 10);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                toast.addEventListener('transitionend', () => toast.remove());
+            }, duration);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('theme-toggle');
+            const splashScreen = document.getElementById('splash-screen');
+            const preloaderText = document.getElementById('preloader-text');
+            const marqueeInner = document.getElementById('marquee-inner');
+            const contactForm = document.getElementById('contact-form');
+
+            // Duplicate marquee content
+            marqueeInner.innerHTML += marqueeInner.innerHTML;
+
+            // Preloader Logic
+            const messages = ["Analyzing Network Layers...", "Establishing Secure Shell...", "Injecting Clean Code...", "System Ready."];
+            let msgIdx = 0;
+            const preloaderInterval = setInterval(() => {
+                preloaderText.textContent = messages[msgIdx % messages.length];
+                msgIdx++;
+            }, 1000);
+
+            setTimeout(() => {
+                clearInterval(preloaderInterval);
+                splashScreen.classList.add('fade-out');
+                showToast("System Online.", 'info', 3000);
+            }, 4000);
+
+            // Theme Management
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                html.classList.add('dark');
+            }
+            themeToggle.addEventListener('click', () => {
+                html.classList.toggle('dark');
+                localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+            });
+
+            // Intersection Observer
+            const animObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = entry.target.dataset.delay * 200 || 0;
+                        setTimeout(() => entry.target.classList.add('is-visible'), delay);
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.anim-fade-in').forEach(el => animObserver.observe(el));
+
+            // Typing Effect
+            const typingElement = document.getElementById('typing-text');
+            const textToType = "Full-Stack Developer | Cybersecurity Enthusiast | Product Engineer";
+            let charIdx = 0;
+            function type() {
+                if (charIdx < textToType.length) {
+                    typingElement.textContent = textToType.substring(0, charIdx + 1) + "|";
+                    charIdx++;
+                    setTimeout(type, 60);
+                } else {
+                    typingElement.textContent = textToType;
+                }
+            }
+            setTimeout(() => type(), 4500);
+
+            // Form Submission
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                showToast("Message Received!", 'success', 5000);
+                contactForm.reset();
+            });
+
+            // Mobile Menu
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            hamburger.addEventListener('click', () => mobileMenu.classList.toggle('active'));
+
+            document.getElementById('current-year').textContent = new Date().getFullYear();
         });
-      },
-      { threshold: 0.16 }
-    );
-
-    document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
-  </script>
+    </script>
 </body>
 </html>
