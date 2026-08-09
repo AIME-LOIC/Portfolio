@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aime Loic - Full-Stack | AI | Security</title>
+    <title>Aime Loic — Full-Stack Engineer | Security | AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         .page-section {
             min-height: 100vh;
@@ -15,134 +15,100 @@
             justify-content: center;
         }
 
-        /* --- SPLASH SCREEN STYLES --- */
-        #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #0d1117;
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 1s ease-out;
-        }
-        #splash-screen.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
-        @keyframes loading-spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .loading-spinner {
-            border: 4px solid rgba(255, 255, 255, 0.2);
-            border-top: 4px solid #38bdf8;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: loading-spin 1s linear infinite;
-        }
-        .loading-text {
-            color: #10b981;
-            font-size: 1.25rem;
-            margin-top: 1rem;
-        }
-
         /* --- SKILLS MARQUEE --- */
         .marquee-container {
-            overflow: hidden;
-            white-space: nowrap;
-            padding: 2.5rem 0;
-            background: rgba(255, 255, 255, 0.05);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden; white-space: nowrap; padding: 2.25rem 0;
+            background: rgba(255,255,255,0.05);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
             position: relative;
         }
-        .marquee-content {
-            display: inline-flex;
-            gap: 5rem;
-            animation: marquee-scroll 30s linear infinite;
-            align-items: center;
-        }
-        .skill-logo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.75rem;
-            min-width: 100px;
-        }
-        .skill-logo i {
-            font-size: 3rem;
+        .marquee-content { display: inline-flex; gap: 4rem; animation: marquee-scroll 40s linear infinite; align-items: center; }
+        .marquee-container:hover .marquee-content { animation-play-state: paused; }
+        .skill-logo { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; min-width: 90px; }
+        .skill-logo i, .skill-logo span.icon-fallback { font-size: 2.6rem; transition: transform 0.3s ease, filter 0.3s ease; }
+        .skill-logo:hover i, .skill-logo:hover span.icon-fallback { transform: scale(1.15) translateY(-5px); filter: drop-shadow(0 0 8px currentColor); }
+        .skill-logo .text-mark {
+            font-size: 1.9rem;
+            font-weight: 800;
+            font-family: 'Courier New', monospace;
+            line-height: 1;
             transition: transform 0.3s ease, filter 0.3s ease;
         }
-        .skill-logo:hover i {
-            transform: scale(1.15) translateY(-5px);
-            filter: drop-shadow(0 0 8px currentColor);
-        }
-        @keyframes marquee-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+        .skill-logo:hover .text-mark { transform: scale(1.15) translateY(-5px); filter: drop-shadow(0 0 8px currentColor); }
+        @keyframes marquee-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- TOASTER CONTAINER STYLES --- */
-        #toaster-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9998;
-            max-width: 350px;
-        }
+        /* --- TOASTS --- */
+        #toaster-container { position: fixed; bottom: 20px; right: 20px; z-index: 9998; max-width: 350px; }
         .toast {
-            padding: 1rem;
-            margin-top: 1rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            transform: translateX(100%);
+            padding: 1rem; margin-top: 1rem; border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            opacity: 0; transform: translateX(100%);
             transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
-        .toast.show {
-            opacity: 1;
-            transform: translateX(0);
-        }
+        .toast.show { opacity: 1; transform: translateX(0); }
         .toast.success { background-color: #10b981; color: white; }
         .toast.info { background-color: #3b82f6; color: white; }
 
-        /* --- General Animation Styles --- */
-        .anim-fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-        .anim-fade-in.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* --- Animations --- */
+        .anim-fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .anim-fade-in.is-visible { opacity: 1; transform: translateY(0); }
 
-        /* --- Hero Pulsating Effect --- */
         @keyframes pulse-slow {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
-            50% { box-shadow: 0 0 0 25px rgba(79, 70, 229, 0); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(79,70,229,0.4); }
+            50% { box-shadow: 0 0 0 25px rgba(79,70,229,0); }
         }
-        .hero-pulse {
-            animation: pulse-slow 3s infinite;
-        }
+        .hero-pulse { animation: pulse-slow 3s infinite; }
 
         .mobile-menu { display: none; }
         .mobile-menu.active { display: block; }
+
+        /* --- SKELETON LOADER (white theme) --- */
+        #skeleton-loader {
+            position: fixed; inset: 0;
+            background: #ffffff;
+            z-index: 9999;
+            display: flex; flex-direction: column; align-items: center;
+            padding-top: 7rem;
+            transition: opacity 0.5s ease-out;
+        }
+        #skeleton-loader.fade-out { opacity: 0; pointer-events: none; }
+        .skel { background: linear-gradient(90deg, #eceef1 25%, #f6f7f9 37%, #eceef1 63%); background-size: 400% 100%; animation: skel-shimmer 1.4s ease infinite; border-radius: 0.5rem; }
+        @keyframes skel-shimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+        .skel-avatar { width: 12rem; height: 12rem; border-radius: 50%; margin-bottom: 1.75rem; }
+        .skel-line { height: 1rem; margin: 0.6rem 0; }
+        .skel-line.w-72 { width: 18rem; }
+        .skel-line.w-96 { width: 24rem; }
+        .skel-line.w-56 { width: 14rem; }
+        .skel-row { display: flex; gap: 1rem; margin-top: 2.5rem; }
+        .skel-pill { width: 9rem; height: 2.75rem; border-radius: 9999px; }
+
+        /* --- Terminal card for npm package --- */
+        .terminal-card {
+            background: #0d1117;
+            border-radius: 0.75rem;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            overflow: hidden;
+        }
+        .terminal-dots span { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+
+        /* --- Skill category cards --- */
+        .skill-cat-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .skill-cat-card:hover { transform: translateY(-4px); }
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-500">
 
-    <!-- Splash Screen -->
-    <div id="splash-screen">
-        <div class="loading-spinner"></div>
-        <p class="loading-text" id="preloader-text">Initializing Secure Systems...</p>
+    <!-- Skeleton Loader -->
+    <div id="skeleton-loader">
+        <div class="skel skel-avatar"></div>
+        <div class="skel skel-line w-56"></div>
+        <div class="skel skel-line w-96"></div>
+        <div class="skel skel-line w-72"></div>
+        <div class="skel-row">
+            <div class="skel skel-pill"></div>
+            <div class="skel skel-pill"></div>
+        </div>
     </div>
 
     <!-- Toast Container -->
@@ -182,17 +148,17 @@
         <section id="home" class="page-section pt-8">
             <div class="max-w-7xl mx-auto px-4 text-center anim-fade-in">
                 <div class="relative w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-4 border-indigo-600 dark:border-teal-400 hero-pulse">
-                    <img src="/loic.png" alt="Aime Loic" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Aime+Loic&background=4f46e5&color=fff'">
+                    <img src="/aime loic.png" alt="Aime Loic" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Aime+Loic&background=4f46e5&color=fff'">
                 </div>
                 <p class="text-xl text-gray-600 dark:text-gray-400 mb-2 anim-fade-in" data-delay="1">Hello, I'm</p>
                 <h1 class="text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-7xl lg:text-8xl anim-fade-in" data-delay="2">Aime Loic</h1>
                 <p id="typing-text" class="mt-4 h-8 text-2xl font-semibold text-indigo-600 dark:text-teal-400 sm:text-3xl lg:text-4xl anim-fade-in" data-delay="3">|</p>
-                
+
                 <div class="mt-12 flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6 anim-fade-in" data-delay="4">
                     <a href="#projects" class="px-8 py-3 rounded-full shadow-lg text-white bg-indigo-600 hover:bg-indigo-700 dark:bg-teal-500 dark:hover:bg-teal-600 transition transform hover:scale-105 inline-flex items-center">
                         <i class="fas fa-rocket mr-2"></i> View Projects
                     </a>
-                    <a href="CV.pdf" id="download-cv-btn" download="Aime_Loic_CV.pdf" class="px-8 py-3 border-2 border-indigo-600 dark:border-teal-400 rounded-full text-indigo-600 dark:text-teal-400 hover:bg-indigo-50 dark:hover:bg-gray-800 transition transform hover:scale-105 inline-flex items-center">
+                    <a href="aime_cv.docx" id="download-cv-btn" download="aime_cv.docx" class="px-8 py-3 border-2 border-indigo-600 dark:border-teal-400 rounded-full text-indigo-600 dark:text-teal-400 hover:bg-indigo-50 dark:hover:bg-gray-800 transition transform hover:scale-105 inline-flex items-center">
                         <i class="fas fa-file-download mr-2"></i> Download CV
                     </a>
                 </div>
@@ -205,30 +171,30 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div class="anim-fade-in" data-delay="1">
                         <div class="relative inline-block mb-4">
-                            <span class="text-indigo-600 dark:text-teal-400 font-bold uppercase tracking-widest text-sm">A Bit About Me</span>
+                            <span class="text-indigo-600 dark:text-teal-400 font-bold uppercase tracking-widest text-sm">A bit about me</span>
                             <div class="h-1 w-12 bg-indigo-600 dark:bg-teal-400 mt-1"></div>
                         </div>
-                        <h2 class="text-4xl lg:text-5xl font-extrabold mb-6 leading-tight">Crafting Digital Excellence with <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-teal-500">Logic & Innovation</span></h2>
+                        <h2 class="text-4xl lg:text-5xl font-extrabold mb-6 leading-tight">Crafting digital excellence with <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-teal-500">logic &amp; innovation</span></h2>
                         <div class="space-y-4 text-lg text-gray-600 dark:text-gray-400">
                             <p>
-                                I am a passionate **Full-Stack Developer** based in Rwanda, dedicated to building secure, scalable, and user-centric digital products. My journey in technology is driven by a curiosity for how systems work and a desire to solve complex real-world problems.
+                                I'm a <strong>Software Engineer</strong> based in Kigali, Rwanda, working across full-stack web development, systems programming, and applied security. My background spans <strong>Python (Flask, Django), Node.js (Express, React), Go, Java, C/C++/C#</strong>, and mobile development with <strong>Flutter</strong> — giving me the range to move comfortably from backend architecture to interfaces people actually enjoy using.
                             </p>
                             <p>
-                                Whether it's architecting robust backends with **Python** and **Go**, or crafting fluid front-end experiences with **React**, I focus on writing clean, efficient, and maintainable code. My background in **Cybersecurity** ensures that every line of code I write is built with a "security-first" mindset.
+                                I bring a security-first mindset to everything I build, shaped by hands-on work with tools like <strong>Nmap</strong> and <strong>Wireshark</strong>, and a solid grounding in data structures and algorithms. I also design — in <strong>Figma</strong> and on <strong>Canvas</strong> — so the products I ship are as considered visually as they are technically.
                             </p>
                             <p>
-                                Beyond just coding, I am a product engineer who believes in the power of **EdTech** and **FinTech** to transform communities. I thrive in collaborative environments where innovation meets execution.
+                                Recently, I built and published <strong>aimeloic@monkey-tester</strong>, my own npm package for automated API testing — one piece of a growing toolkit aimed at making development faster, safer, and more reliable for teams in EdTech, FinTech, and beyond.
                             </p>
                         </div>
-                        
+
                         <div class="mt-10 grid grid-cols-2 gap-4">
                             <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border-l-4 border-indigo-600">
-                                <h4 class="font-bold text-2xl text-gray-900 dark:text-white">5+</h4>
-                                <p class="text-sm text-gray-500">Production Projects</p>
+                                <h4 class="font-bold text-2xl text-gray-900 dark:text-white">15+</h4>
+                                <p class="text-sm text-gray-500">Languages &amp; tools</p>
                             </div>
                             <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border-l-4 border-teal-500">
                                 <h4 class="font-bold text-2xl text-gray-900 dark:text-white">24/7</h4>
-                                <p class="text-sm text-gray-500">Security Mindset</p>
+                                <p class="text-sm text-gray-500">Security mindset</p>
                             </div>
                         </div>
                     </div>
@@ -236,7 +202,7 @@
                     <div class="relative anim-fade-in" data-delay="2">
                         <div class="absolute -top-10 -left-10 w-40 h-40 bg-indigo-600/10 rounded-full blur-3xl"></div>
                         <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-teal-500/10 rounded-full blur-3xl"></div>
-                        
+
                         <div class="relative bg-gray-50 dark:bg-gray-800 p-8 rounded-3xl border border-gray-100 dark:border-gray-700 shadow-2xl">
                             <ul class="space-y-6">
                                 <li class="flex items-center">
@@ -255,13 +221,19 @@
                                     <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center text-purple-600 dark:text-purple-400 mr-4">
                                         <i class="fas fa-brain"></i>
                                     </div>
-                                    <span class="font-medium">AI & Automation Logic</span>
+                                    <span class="font-medium">AI &amp; Automation Logic</span>
                                 </li>
                                 <li class="flex items-center">
                                     <div class="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center text-orange-600 dark:text-orange-400 mr-4">
-                                        <i class="fas fa-database"></i>
+                                        <i class="fas fa-mobile-alt"></i>
                                     </div>
-                                    <span class="font-medium">Scalable Architecture</span>
+                                    <span class="font-medium">Cross-Platform Apps (Flutter)</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <div class="w-10 h-10 rounded-lg bg-rose-100 dark:bg-rose-900/40 flex items-center justify-center text-rose-600 dark:text-rose-400 mr-4">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <span class="font-medium">Robotics &amp; Embedded Systems</span>
                                 </li>
                             </ul>
                         </div>
@@ -270,25 +242,66 @@
             </div>
         </section>
 
-        <!-- Skills Marquee Section -->
+        <!-- Skills Marquee -->
         <section id="skills" class="py-20 bg-gray-100 dark:bg-gray-800/30 overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 mb-10 text-center anim-fade-in">
-                <h2 class="text-4xl font-bold">Tech Stack & Tools</h2>
-                <p class="text-gray-600 dark:text-gray-400 mt-2">The languages and frameworks I use to build digital solutions</p>
+                <span class="text-indigo-600 dark:text-teal-400 font-bold uppercase tracking-widest text-sm">Tech stack</span>
+                <h2 class="text-4xl font-bold mt-2">Languages, Frameworks &amp; Tools</h2>
+                <p class="text-gray-600 dark:text-gray-400 mt-2">What I reach for to design, build, and secure digital products</p>
             </div>
-            
+
             <div class="marquee-container anim-fade-in" data-delay="2">
                 <div class="marquee-content" id="marquee-inner">
                     <div class="skill-logo text-[#3776AB]"><i class="fab fa-python"></i><span class="font-bold text-xs uppercase tracking-widest">Python</span></div>
-                    <div class="skill-logo text-[#00ADD8]"><i class="fab fa-golang"></i><span class="font-bold text-xs uppercase tracking-widest">Golang</span></div>
+                    <div class="skill-logo text-[#092E20]"><span class="text-mark">Dj</span><span class="font-bold text-xs uppercase tracking-widest">Django</span></div>
+                    <div class="skill-logo text-[#000000] dark:text-white"><i class="fas fa-flask"></i><span class="font-bold text-xs uppercase tracking-widest">Flask</span></div>
                     <div class="skill-logo text-[#339933]"><i class="fab fa-node-js"></i><span class="font-bold text-xs uppercase tracking-widest">Node.js</span></div>
+                    <div class="skill-logo text-[#000000] dark:text-white"><span class="text-mark">Ex</span><span class="font-bold text-xs uppercase tracking-widest">Express</span></div>
                     <div class="skill-logo text-[#61DAFB]"><i class="fab fa-react"></i><span class="font-bold text-xs uppercase tracking-widest">React</span></div>
-                    <div class="skill-logo text-[#4FC08D]"><i class="fab fa-vuejs"></i><span class="font-bold text-xs uppercase tracking-widest">Vue.js</span></div>
+                    <div class="skill-logo text-[#00ADD8]"><i class="fab fa-golang"></i><span class="font-bold text-xs uppercase tracking-widest">Go</span></div>
+                    <div class="skill-logo text-[#00599C]"><span class="text-mark">C</span><span class="font-bold text-xs uppercase tracking-widest">C</span></div>
+                    <div class="skill-logo text-[#00599C]"><span class="text-mark">C++</span><span class="font-bold text-xs uppercase tracking-widest">C++</span></div>
+                    <div class="skill-logo text-[#9B4F96]"><span class="text-mark">C#</span><span class="font-bold text-xs uppercase tracking-widest">C#</span></div>
+                    <div class="skill-logo text-[#ED8B00]"><i class="fab fa-java"></i><span class="font-bold text-xs uppercase tracking-widest">Java</span></div>
+                    <div class="skill-logo text-[#02569B]"><i class="fab fa-android"></i><span class="font-bold text-xs uppercase tracking-widest">Flutter</span></div>
                     <div class="skill-logo text-[#F7DF1E]"><i class="fab fa-js"></i><span class="font-bold text-xs uppercase tracking-widest">JavaScript</span></div>
                     <div class="skill-logo text-[#E34F26]"><i class="fab fa-html5"></i><span class="font-bold text-xs uppercase tracking-widest">HTML5</span></div>
                     <div class="skill-logo text-[#1572B6]"><i class="fab fa-css3-alt"></i><span class="font-bold text-xs uppercase tracking-widest">CSS3</span></div>
                     <div class="skill-logo text-[#F05032]"><i class="fab fa-git-alt"></i><span class="font-bold text-xs uppercase tracking-widest">Git</span></div>
                     <div class="skill-logo text-[#2496ED]"><i class="fab fa-docker"></i><span class="font-bold text-xs uppercase tracking-widest">Docker</span></div>
+                    <div class="skill-logo text-[#FCC624]"><i class="fab fa-linux"></i><span class="font-bold text-xs uppercase tracking-widest">Linux</span></div>
+                    <div class="skill-logo text-[#4EAA25]"><i class="fas fa-terminal"></i><span class="font-bold text-xs uppercase tracking-widest">Bash</span></div>
+                    <div class="skill-logo text-[#336791]"><i class="fas fa-database"></i><span class="font-bold text-xs uppercase tracking-widest">PostgreSQL</span></div>
+                    <div class="skill-logo text-[#E63946]"><i class="fas fa-satellite-dish"></i><span class="font-bold text-xs uppercase tracking-widest">Nmap</span></div>
+                    <div class="skill-logo text-[#1679A7]"><i class="fas fa-network-wired"></i><span class="font-bold text-xs uppercase tracking-widest">Wireshark</span></div>
+                    <div class="skill-logo text-[#F24E1E]"><i class="fab fa-figma"></i><span class="font-bold text-xs uppercase tracking-widest">Figma</span></div>
+                    <div class="skill-logo text-[#6D28D9]"><i class="fas fa-pen-nib"></i><span class="font-bold text-xs uppercase tracking-widest">Canvas</span></div>
+                    <div class="skill-logo text-[#0EA5E9]"><i class="fas fa-diagram-project"></i><span class="font-bold text-xs uppercase tracking-widest">DSA</span></div>
+                    <div class="skill-logo text-[#F59E0B]"><i class="fas fa-robot"></i><span class="font-bold text-xs uppercase tracking-widest">Robotics</span></div>
+                </div>
+            </div>
+
+            <!-- Categorized skill cards for a quick scan -->
+            <div class="max-w-7xl mx-auto px-4 mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="skill-cat-card bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-lg anim-fade-in" data-delay="1">
+                    <i class="fas fa-code text-indigo-600 dark:text-teal-400 text-2xl mb-3"></i>
+                    <h4 class="font-bold mb-2">Languages</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Python, JavaScript, Go, Java, C, C++, C#</p>
+                </div>
+                <div class="skill-cat-card bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-lg anim-fade-in" data-delay="2">
+                    <i class="fas fa-layer-group text-indigo-600 dark:text-teal-400 text-2xl mb-3"></i>
+                    <h4 class="font-bold mb-2">Frameworks</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Flask, Django, Express, React, Flutter</p>
+                </div>
+                <div class="skill-cat-card bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-lg anim-fade-in" data-delay="3">
+                    <i class="fas fa-shield-halved text-indigo-600 dark:text-teal-400 text-2xl mb-3"></i>
+                    <h4 class="font-bold mb-2">Security</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Nmap, Wireshark, secure-by-design practices</p>
+                </div>
+                <div class="skill-cat-card bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-lg anim-fade-in" data-delay="4">
+                    <i class="fas fa-pen-nib text-indigo-600 dark:text-teal-400 text-2xl mb-3"></i>
+                    <h4 class="font-bold mb-2">Tooling &amp; Design</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Docker, Git, Figma, Canvas, DSA, Robotics</p>
                 </div>
             </div>
         </section>
@@ -297,7 +310,8 @@
         <section id="projects" class="page-section py-20 bg-white dark:bg-gray-900">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-16 anim-fade-in">
-                    <h2 class="text-5xl font-extrabold mb-4">Featured Projects</h2>
+                    <span class="text-indigo-600 dark:text-teal-400 font-bold uppercase tracking-widest text-sm">Selected work</span>
+                    <h2 class="text-5xl font-extrabold mt-2 mb-4">Featured Projects</h2>
                     <div class="h-1.5 w-24 bg-indigo-600 dark:bg-teal-400 mx-auto rounded-full"></div>
                 </div>
 
@@ -311,8 +325,7 @@
                             <div class="flex flex-wrap gap-2">
                                 <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full text-xs font-bold uppercase">Backend</span>
                                 <span class="px-3 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-full text-xs font-bold uppercase">Python</span>
-                                <!-- direct link -->
-                                    <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full text-xs font-bold uppercase"><a href="https://bookit-rw-web.onrender.com" target="_blank" rel="noopener noreferrer">Visit Site</a></span>
+                                <a href="https://bookit-rw-web.onrender.com" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full text-xs font-bold uppercase hover:bg-indigo-600 hover:text-white transition">Visit Site</a>
                             </div>
                         </div>
                     </div>
@@ -326,8 +339,7 @@
                             <div class="flex flex-wrap gap-2">
                                 <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full text-xs font-bold uppercase">AI/Sim</span>
                                 <span class="px-3 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-full text-xs font-bold uppercase">React</span>
-                                <!-- direct link -->
-                                    <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full text-xs font-bold uppercase"><a href="https://v-lab-rw-web.onrender.com" target="_blank" rel="noopener noreferrer">Visit Site</a></span>
+                                <a href="https://v-lab-rw-web.onrender.com" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full text-xs font-bold uppercase hover:bg-indigo-600 hover:text-white transition">Visit Site</a>
                             </div>
                         </div>
                     </div>
@@ -341,9 +353,37 @@
                             <div class="flex flex-wrap gap-2">
                                 <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full text-xs font-bold uppercase">EdTech</span>
                                 <span class="px-3 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-full text-xs font-bold uppercase">FullStack</span>
-                                <!-- direct link -->
-                                 <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full text-xs font-bold uppercase"><a href="https://myschool-rw-web.onrender.com" target="_blank" rel="noopener noreferrer">Visit Site</a></span>
+                                <a href="https://myschool-rw-web.onrender.com" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full text-xs font-bold uppercase hover:bg-indigo-600 hover:text-white transition">Visit Site</a>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NPM Package Highlight -->
+                <div class="mt-12 anim-fade-in" data-delay="4">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 dark:border-gray-800">
+                        <div class="bg-gray-50 dark:bg-gray-800 p-8 flex flex-col justify-center">
+                            <div class="text-indigo-600 dark:text-teal-400 text-4xl mb-6"><i class="fab fa-npm"></i></div>
+                            <h3 class="text-2xl font-bold mb-3">monkey-tester</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6">My own open-source npm package for automated API testing — built to make it faster to catch broken endpoints and bad responses before they reach production.</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full text-xs font-bold uppercase">npm package</span>
+                                <span class="px-3 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-full text-xs font-bold uppercase">API Testing</span>
+                                <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full text-xs font-bold uppercase">Node.js</span>
+                            </div>
+                            <a href="https://www.npmjs.com/package/@aimeloic/monkey-tester" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-indigo-600 dark:text-teal-400 font-bold hover:underline">
+                                View on npm <i class="fas fa-arrow-right text-sm"></i>
+                            </a>
+                        </div>
+                        <div class="terminal-card p-6 flex flex-col justify-center">
+                            <div class="terminal-dots mb-4">
+                                <span class="bg-red-500"></span><span class="bg-yellow-500"></span><span class="bg-green-500"></span>
+                            </div>
+                            <p class="text-gray-500 text-sm mb-1">$ install</p>
+                            <p class="text-teal-400 text-lg mb-4">npm i aimeloic@monkey-tester</p>
+                            <p class="text-gray-500 text-sm mb-1">$ usage</p>
+                            <p class="text-indigo-400 text-sm">import {<span class="text-white">monkeyTest</span>} from '@aimeloic/monkey-tester';</p>
+                            <p class="text-indigo-400 text-sm">monkeyTest('<span class="text-white">/api/users</span>');</p>
                         </div>
                     </div>
                 </div>
@@ -363,7 +403,7 @@
                     <div class="space-y-8 anim-fade-in" data-delay="1">
                         <div class="bg-white dark:bg-gray-900 p-8 rounded-3xl shadow-lg border border-transparent dark:border-gray-800">
                             <h3 class="text-2xl font-bold mb-6 text-indigo-600 dark:text-teal-400">Contact Details</h3>
-                            
+
                             <div class="space-y-6">
                                 <div class="flex items-start">
                                     <div class="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mr-4 shrink-0">
@@ -381,7 +421,7 @@
                                     </div>
                                     <div>
                                         <p class="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-widest font-bold">Phone</p>
-                                        <a href="tel:+250791749219" class="text-lg font-medium hover:text-indigo-600 dark:hover:text-teal-400 transition">+250 791749219</a>
+                                        <a href="tel:+250791749219" class="text-lg font-medium hover:text-indigo-600 dark:hover:text-teal-400 transition">+250 791 749 219</a>
                                     </div>
                                 </div>
 
@@ -404,6 +444,9 @@
                             <a href="https://www.linkedin.com/in/aimeloic/" target="_blank" class="flex-1 bg-white dark:bg-gray-900 p-4 rounded-2xl shadow hover:shadow-teal-500/20 transition flex items-center justify-center gap-2 font-bold">
                                 <i class="fab fa-linkedin text-xl"></i> LinkedIn
                             </a>
+                            <a href="https://www.npmjs.com/~aimeloic" target="_blank" class="flex-1 bg-white dark:bg-gray-900 p-4 rounded-2xl shadow hover:shadow-red-500/20 transition flex items-center justify-center gap-2 font-bold">
+                                <i class="fab fa-npm text-xl"></i> npm
+                            </a>
                         </div>
                     </div>
 
@@ -412,11 +455,11 @@
                         <form id="contact-form" class="space-y-4">
                             <div>
                                 <label class="block text-sm font-bold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-tight">Full Name</label>
-                                <input type="text" required class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-indigo-500 outline-none transition" placeholder="John Doe">
+                                <input type="text" required class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-indigo-500 outline-none transition" placeholder="aime loic">
                             </div>
                             <div>
                                 <label class="block text-sm font-bold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-tight">Email Address</label>
-                                <input type="email" required class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-indigo-500 outline-none transition" placeholder="john@example.com">
+                                <input type="email" required class="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-indigo-500 outline-none transition" placeholder="user@example.com">
                             </div>
                             <div>
                                 <label class="block text-sm font-bold text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-tight">Message</label>
@@ -433,7 +476,7 @@
     </main>
 
     <footer class="text-center py-10 border-t dark:border-gray-800 bg-gray-50 dark:bg-gray-950">
-        <p class="text-gray-500 dark:text-gray-400">&copy; <span id="current-year"></span> Aime Loic. Developed for the Future.</p>
+        <p class="text-gray-500 dark:text-gray-400">&copy; <span id="current-year"></span> Aime Loic. Built for the future.</p>
     </footer>
 
     <script>
@@ -453,74 +496,68 @@
         document.addEventListener('DOMContentLoaded', () => {
             const html = document.documentElement;
             const themeToggle = document.getElementById('theme-toggle');
-            const splashScreen = document.getElementById('splash-screen');
-            const preloaderText = document.getElementById('preloader-text');
             const marqueeInner = document.getElementById('marquee-inner');
             const contactForm = document.getElementById('contact-form');
+            const skeletonLoader = document.getElementById('skeleton-loader');
 
-            // Duplicate marquee content
+            // Skeleton loader fade-out
+            setTimeout(() => {
+                skeletonLoader.classList.add('fade-out');
+                setTimeout(() => skeletonLoader.remove(), 500);
+            }, 800);
+
+            // Duplicate marquee content for seamless loop
             marqueeInner.innerHTML += marqueeInner.innerHTML;
 
-            // Preloader Logic
-            const messages = ["Analyzing Network Layers...", "Establishing Secure Shell...", "Injecting Clean Code...", "System Ready."];
-            let msgIdx = 0;
-            const preloaderInterval = setInterval(() => {
-                preloaderText.textContent = messages[msgIdx % messages.length];
-                msgIdx++;
-            }, 1000);
-
-            setTimeout(() => {
-                clearInterval(preloaderInterval);
-                splashScreen.classList.add('fade-out');
-                showToast("System Online.", 'info', 3000);
-            }, 4000);
-
-            // Theme Management
-            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            // Theme — default to light unless user explicitly chose dark before
+            if (localStorage.theme === 'dark') {
                 html.classList.add('dark');
+            } else {
+                html.classList.remove('dark');
             }
             themeToggle.addEventListener('click', () => {
                 html.classList.toggle('dark');
                 localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
             });
 
-            // Intersection Observer
+            // Scroll reveal
             const animObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        const delay = entry.target.dataset.delay * 200 || 0;
+                        const delay = entry.target.dataset.delay * 150 || 0;
                         setTimeout(() => entry.target.classList.add('is-visible'), delay);
                     }
                 });
             }, { threshold: 0.1 });
             document.querySelectorAll('.anim-fade-in').forEach(el => animObserver.observe(el));
 
-            // Typing Effect
+            // Typing effect
             const typingElement = document.getElementById('typing-text');
-            const textToType = "Full-Stack Developer | Cybersecurity Enthusiast | Product Engineer";
+            const textToType = "Full-Stack Engineer | Cybersecurity | AI & Robotics";
             let charIdx = 0;
             function type() {
                 if (charIdx < textToType.length) {
                     typingElement.textContent = textToType.substring(0, charIdx + 1) + "|";
                     charIdx++;
-                    setTimeout(type, 60);
+                    setTimeout(type, 55);
                 } else {
                     typingElement.textContent = textToType;
                 }
             }
-            setTimeout(() => type(), 4500);
+            setTimeout(() => type(), 600);
 
-            // Form Submission
+            // Form submission
             contactForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                showToast("Message Received!", 'success', 5000);
+                showToast("Message received!", 'success', 5000);
                 contactForm.reset();
             });
 
-            // Mobile Menu
+            // Mobile menu
             const hamburger = document.getElementById('hamburger');
             const mobileMenu = document.getElementById('mobile-menu');
             hamburger.addEventListener('click', () => mobileMenu.classList.toggle('active'));
+            mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('active')));
 
             document.getElementById('current-year').textContent = new Date().getFullYear();
         });
