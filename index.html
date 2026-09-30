@@ -260,15 +260,19 @@
             margin-bottom:1rem;
         }
         .hero-title {
-            font-size:clamp(3.6rem,6.7vw,6.4rem);
+            font-family:"Brush Script MT","Segoe Script","Lucida Handwriting",cursive;
+            font-size:clamp(4.2rem,7.2vw,7rem);
+            font-weight:600;
             line-height:.92;
-            letter-spacing:-.055em;
+            letter-spacing:.01em;
         }
         .hero-title .accent { color:#16a34a; }
         .hero-subtitle {
-            font-size:clamp(1.8rem,3.1vw,3rem);
+            font-family:"Brush Script MT","Segoe Script","Lucida Handwriting",cursive;
+            font-size:clamp(2.1rem,3.5vw,3.4rem);
+            font-weight:600;
             line-height:1.05;
-            letter-spacing:-.035em;
+            letter-spacing:.005em;
             margin-top:1.25rem;
         }
         .hero-description {
@@ -310,19 +314,32 @@
         .hero-visual::before {
             content:"";
             position:absolute;
-            width:510px;
-            height:510px;
-            max-width:90%;
+            width:440px;
+            height:440px;
+            max-width:82%;
             border-radius:50%;
-            background:radial-gradient(circle,rgba(187,247,208,.9) 0%,rgba(220,252,231,.62) 48%,rgba(240,253,244,0) 73%);
+            background:#dcfce7;
+            border:1px solid #bbf7d0;
             z-index:0;
+        }
+        .hero-visual::after {
+            content:"";
+            position:absolute;
+            width:300px;
+            height:300px;
+            border-radius:50%;
+            background:#f0fdf4;
+            border:1px solid #dcfce7;
+            z-index:0;
+            transform:translate(18px,18px);
         }
         .hero-orb {
             position:absolute;
             border-radius:50%;
-            background:linear-gradient(145deg,#bbf7d0,#dcfce7);
-            box-shadow:0 8px 25px rgba(34,197,94,.12);
-            opacity:.9;
+            background:#bbf7d0;
+            border:1px solid #86efac;
+            box-shadow:none;
+            opacity:1;
             z-index:1;
             animation:hero-orb-float 7s ease-in-out infinite alternate;
         }
@@ -398,7 +415,7 @@
 
         @media (max-width: 640px) {
             .page-section { min-height: 90vh; }
-            #home h1 { font-size: 3.5rem; }
+            #home h1 { font-size: 3.8rem; }
             body::before, body::after { width: 180px; height: 180px; }
         }
 
