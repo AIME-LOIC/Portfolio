@@ -95,6 +95,127 @@
         /* --- Skill category cards --- */
         .skill-cat-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .skill-cat-card:hover { transform: translateY(-4px); }
+    
+        /* ===== AIME LOIC PORTFOLIO — LIGHT GREEN VISUAL REFRESH ===== */
+        :root {
+            --aime-green: #16a34a;
+            --aime-green-light: #22c55e;
+            --aime-mint: #f0fdf4;
+            --aime-border: #dcfce7;
+            --aime-text: #0f172a;
+            --aime-muted: #64748b;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            background: #ffffff !important;
+            color: var(--aime-text) !important;
+            overflow-x: hidden;
+        }
+        body::before, body::after {
+            content: "";
+            position: fixed;
+            width: 260px;
+            height: 260px;
+            border-radius: 9999px;
+            pointer-events: none;
+            z-index: -1;
+            filter: blur(70px);
+            opacity: .22;
+            animation: float-orb 10s ease-in-out infinite alternate;
+        }
+        body::before { background: #86efac; top: 12%; left: -130px; }
+        body::after { background: #bbf7d0; right: -130px; bottom: 8%; animation-delay: -4s; }
+        @keyframes float-orb {
+            from { transform: translate3d(0,0,0) scale(1); }
+            to { transform: translate3d(35px,-25px,0) scale(1.12); }
+        }
+        .dark\:bg-gray-900, .dark\:bg-gray-950, .dark\:bg-gray-800, .dark\:bg-gray-800\/30,
+        .dark\:bg-gray-700, .dark\:bg-gray-900\/40 { background-color: #ffffff !important; }
+        .dark\:text-white, .dark\:text-gray-100, .dark\:text-gray-200,
+        .dark\:text-gray-300 { color: #0f172a !important; }
+        .dark\:text-gray-400, .dark\:text-gray-500 { color: #64748b !important; }
+        .dark\:border-gray-700, .dark\:border-gray-800 { border-color: #e2e8f0 !important; }
+        .text-indigo-600, .dark\:text-teal-400, .dark\:text-indigo-400 { color: var(--aime-green) !important; }
+        .bg-indigo-600, .dark\:bg-teal-500 { background-color: var(--aime-green) !important; }
+        .hover\:bg-indigo-700:hover, .dark\:hover\:bg-teal-600:hover { background-color: #15803d !important; }
+        .border-indigo-600, .dark\:border-teal-400 { border-color: var(--aime-green) !important; }
+        .bg-indigo-100, .dark\:bg-indigo-900\/30 { background-color: #dcfce7 !important; }
+        .text-teal-600, .dark\:text-teal-400 { color: var(--aime-green) !important; }
+        .bg-teal-100, .dark\:bg-teal-900\/30 { background-color: #dcfce7 !important; }
+        .bg-purple-100, .bg-orange-100, .bg-rose-100 { background-color: #f0fdf4 !important; }
+        .shadow-lg, .shadow-2xl { box-shadow: 0 12px 35px rgba(15, 23, 42, .08) !important; }
+        nav {
+            background: rgba(255,255,255,.88) !important;
+            border-bottom: 1px solid #ecfdf5;
+        }
+        .nav-link { transition: color .25s ease, transform .25s ease; }
+        .nav-link:hover { color: var(--aime-green) !important; transform: translateY(-2px); }
+        #theme-toggle { display: none; }
+        .page-section { position: relative; }
+        #home {
+            background: radial-gradient(circle at 50% 20%, #f0fdf4 0, #fff 42%, #fff 100%);
+        }
+        #home .relative.w-48 {
+            border-color: var(--aime-green) !important;
+            box-shadow: 0 0 0 10px rgba(34,197,94,.08), 0 18px 50px rgba(22,163,74,.18);
+        }
+        .hero-pulse { animation: hero-pulse-green 3s infinite; }
+        @keyframes hero-pulse-green {
+            0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,.25), 0 18px 50px rgba(22,163,74,.12); }
+            50% { box-shadow: 0 0 0 18px rgba(34,197,94,0), 0 18px 55px rgba(22,163,74,.2); }
+        }
+        .skill-cat-card, #projects .group, #about .relative.bg-gray-50,
+        #contact .bg-white, #contact .flex-1 {
+            border: 1px solid #e2e8f0;
+            transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+        }
+        .skill-cat-card:hover, #projects .group:hover, #about .relative.bg-gray-50:hover,
+        #contact .bg-white:hover, #contact .flex-1:hover {
+            transform: translateY(-8px);
+            border-color: #86efac;
+            box-shadow: 0 20px 45px rgba(22,163,74,.13) !important;
+        }
+        #projects .group::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(34,197,94,.08), transparent 45%);
+            opacity: 0;
+            transition: opacity .3s ease;
+            pointer-events: none;
+        }
+        #projects .group:hover::before { opacity: 1; }
+        #projects .group > div { position: relative; z-index: 1; }
+        .marquee-container {
+            background: #f8fafc !important;
+            border-top: 1px solid #e2e8f0 !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+        }
+        .marquee-content { animation-duration: 34s; }
+        .skill-logo { transition: transform .3s ease; }
+        .skill-logo:hover { transform: translateY(-7px); }
+        input, textarea {
+            background: #f8fafc !important;
+            border-color: #e2e8f0 !important;
+        }
+        input:focus, textarea:focus {
+            border-color: var(--aime-green) !important;
+            box-shadow: 0 0 0 3px rgba(34,197,94,.12) !important;
+        }
+        button[type="submit"] { background: var(--aime-green) !important; }
+        button[type="submit"]:hover { background: #15803d !important; transform: translateY(-2px); }
+        .terminal-card {
+            box-shadow: inset 0 0 40px rgba(34,197,94,.04), 0 20px 50px rgba(15,23,42,.15);
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+        .terminal-card:hover { transform: translateY(-6px); box-shadow: inset 0 0 50px rgba(34,197,94,.08), 0 25px 60px rgba(15,23,42,.18); }
+        .anim-fade-in { will-change: transform, opacity; }
+        @media (max-width: 640px) {
+            .page-section { min-height: 90vh; }
+            #home h1 { font-size: 3.5rem; }
+            body::before, body::after { width: 180px; height: 180px; }
+        }
+
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-500">
@@ -123,7 +244,7 @@
                 <a href="#skills" class="nav-link font-medium hover:text-indigo-600 dark:hover:text-teal-400">Skills</a>
                 <a href="#projects" class="nav-link font-medium hover:text-indigo-600 dark:hover:text-teal-400">Projects</a>
                 <a href="#contact" class="nav-link font-medium hover:text-indigo-600 dark:hover:text-teal-400">Contact</a>
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300">
+                <button id="theme-toggle" aria-hidden="true" tabindex="-1" class="hidden">
                     <i class="fas fa-moon text-gray-800 dark:text-yellow-400"></i>
                 </button>
             </div>
@@ -496,6 +617,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             const html = document.documentElement;
             const themeToggle = document.getElementById('theme-toggle');
+            // Portfolio is intentionally presented in the new light visual system.
+            html.classList.remove('dark');
+            localStorage.theme = 'light';
             const marqueeInner = document.getElementById('marquee-inner');
             const contactForm = document.getElementById('contact-form');
             const skeletonLoader = document.getElementById('skeleton-loader');
@@ -515,10 +639,7 @@
             } else {
                 html.classList.remove('dark');
             }
-            themeToggle.addEventListener('click', () => {
-                html.classList.toggle('dark');
-                localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
-            });
+            if (themeToggle) themeToggle.remove();
 
             // Scroll reveal
             const animObserver = new IntersectionObserver((entries) => {
